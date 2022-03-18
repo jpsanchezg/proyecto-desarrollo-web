@@ -8,11 +8,13 @@ import { HeladosComponent } from './helados/helados.component';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { HomeComponent } from './home/home.component';
+import { NavbarTiendaComponent } from './navbar-tienda/navbar-tienda.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarTiendaComponent,
     HeladosComponent,
     LoginAdminComponent,
     LoginUserComponent,
