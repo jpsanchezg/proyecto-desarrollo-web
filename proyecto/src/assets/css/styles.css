@@ -318,7 +318,7 @@ a:hover {
 /*     Navigation     */
 /**********************/
 .navbar {
-  background-color: #00000000;
+  background-color: #ff0000;
   font-weight: 600;
   font-size: 0.875rem;
   line-height: 0.875rem;
@@ -437,22 +437,23 @@ a:hover {
 
 /* end of dropdown menu */
 
+
+.loginbox {
+  text-align: center;
+  background: url('../images/boxLogin.png') center center no-repeat;
+  margin-top: 5%;
+
+}
+
 .navbar .navbar-toggler {
   padding: 0;
   border: none;
   font-size: 1.25rem;
 }
 
-
 /******************/
 /*     Header     */
 /******************/
-.fondopantalla {
-  background-image: url('../images/fondo-home.jpg') center center no-repeat;
-  background-size: cover;
-  background-color: rgba(0, 0, 0, 0.6);
-  text-align: center;
-}
 
 .header {
   text-align: center;
@@ -463,6 +464,8 @@ a:hover {
   position: relative;
   height: 100vh;
 }
+
+
 
 .header:before {
   content: '';
