@@ -1,0 +1,53 @@
+.product-card
+{
+    background-color: var(--grey);
+    height: 6em;
+    font-size: 24px;
+    width: 24em;
+    padding: 0.6em;
+    margin: 1em;
+    border-radius: 10px;
+}
+
+.helper
+{
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.product-image
+{
+    height: 5em;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.product-info
+{
+    margin-left: 1em;
+    vertical-align: middle;
+    display: inline-block;
+    align-content: center;
+}
+
+.product-name
+{
+    color: white;
+    font-size: 1em;
+}
+
+.product-price
+{
+    color: white;
+    font-size: 1em;
+}
+
+.product-quantity
+{
+    color: white;
+    font-size: 1em;
+    margin-left: 1em;
+    vertical-align: middle;
+    display: inline-block;
+}

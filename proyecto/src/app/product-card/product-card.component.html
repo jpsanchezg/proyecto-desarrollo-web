@@ -1,0 +1,9 @@
+<div class="product-card" *ngFor="let purchase of listPurchases">
+    <span class="helper"></span>
+    <img class="product-image" src={{purchase.getProduct().getImage()}}/>
+    <div class="product-info">
+        <p class="product-name">{{purchase.getProduct().getName()}}</p>
+        <p class="product-price">${{purchase.getProduct().getPrice()}}</p>
+    </div>
+    <p class="product-quantity">{{purchase.getQuantity()}}</p>
+</div>

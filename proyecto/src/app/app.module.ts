@@ -9,6 +9,8 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarTiendaComponent } from './navbar-tienda/navbar-tienda.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ProductShopDisplayComponent } from './product-shop-display/product-shop-display.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { NavbarTiendaComponent } from './navbar-tienda/navbar-tienda.component';
     HeladosComponent,
     LoginAdminComponent,
     LoginUserComponent,
-    HomeComponent
+    HomeComponent,
+    ProductCardComponent,
+    ProductShopDisplayComponent
   ],
   imports: [
     BrowserModule,

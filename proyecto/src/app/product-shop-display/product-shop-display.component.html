@@ -1,0 +1,14 @@
+<table>
+    <tr *ngFor="let row of listProductsToMatrix()">
+        <td *ngFor="let product of row">
+            <button class="product-card">
+                <img class="product-image" src={{product.getImage()}}/>
+                <div class="product-info">
+                    <p class="product-name">{{product.getName()}}</p>
+                    <p class="product-price">${{product.getPrice()}}</p>
+                </div>
+            </button>
+        </td>
+    </tr>
+</table>
+

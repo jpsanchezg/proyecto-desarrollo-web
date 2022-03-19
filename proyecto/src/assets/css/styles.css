@@ -1,3 +1,9 @@
+:root
+{
+  --purple: #7052ff;
+  --grey: #bbbbbb;
+}
+
 body,
 html {
   width: 100%;
