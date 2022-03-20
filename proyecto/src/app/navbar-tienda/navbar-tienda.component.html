@@ -1,37 +1,66 @@
-<header>
-  <nav id="navbarExample" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
-    <div class="container">
-      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav ms-auto navbar-nav-scroll">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="" routerLinkActive="active">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/tienda" routerLinkActive="active">Helados</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/contacto" routerLinkActive="active">Contacto</a>
-          </li>
-        </ul>
-      </div>
-
-      <a class="navbar-brand logo-text" routerLink="" routerLinkActive="active">El papá de los helados</a>
-
-      <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav ms-auto navbar-nav-scroll">
-
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login" routerLinkActive="active">Acceso administrativo</a>
-          </li>
-        </ul>
-        <span class="nav-item">
-          <a class="btn-solid-sm" routerLink="/login" routerLinkActive="active">Acceso clientes</a>
-        </span>
-      </div>
+<nav id="navbarExample" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
+  <div class="container" *ngIf="!ifAdmin() && !iflogin()">
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav ms-auto navbar-nav-scroll">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="" routerLinkActive="active">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/tienda" routerLinkActive="active">Helados</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contacto" routerLinkActive="active">Contacto</a>
+        </li>
+      </ul>
     </div>
-  </nav>
-</header>
+
+    <a class="navbar-brand logo-text" routerLink="" routerLinkActive="active">El papá de los helados</a>
+
+    <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <span class="nav-item">
+        <a class="btn-solid-sm" routerLink="/login" routerLinkActive="active">Ingresar</a>
+      </span>
+    </div>
+  </div>
+  <div class="adminNav" *ngIf="ifAdmin() && iflogin()">
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <span class="nav-item">
+        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Nuevo producto</a>
+      </span>
+      <span class="nav-item">
+        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Editar producto</a>
+      </span>
+      <span class="nav-item">
+        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Ver productos</a>
+      </span>
+      <span class="nav-item">
+        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Eliminar productos</a>
+      </span>
+      <span class="nav-item">
+        <button class="btn-solid-sm" (click)="logOutUser()">Cerrar sesion</button>
+      </span>
+    </div>
+  </div>
+  <div class="lateralcontainer" *ngIf="!ifAdmin() && iflogin()">
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+
+      <span class="nav-item">
+        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Comprar</a>
+      </span>
+      <span class="nav-item">
+        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Listado de compras</a>
+      </span>
+
+      <span class="nav-item">
+        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Listado de facturas</a>
+      </span>
+      <span class="nav-item">
+        <button class="btn-solid-sm" (click)="logOutUser()">Cerrar sesion</button>
+      </span>
+    </div>
+  </div>
+</nav>

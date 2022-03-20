@@ -5,17 +5,26 @@ import { HeladosComponent } from './helados/helados.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { HomeComponent } from './home/home.component';
 import { ContactoComponent } from './contacto/contacto.component';
+import { AdminComponent } from './admin/admin.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { PurchaseSuccessComponent } from './purchase-success/purchase-success.component';
+
 
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'tienda', component: HeladosComponent},
   { path: 'login', component: LoginUserComponent, data:{navbar:false}},
-  { path: 'contacto', component: ContactoComponent}
+  { path: 'contacto', component: ContactoComponent},
+  { path: 'admin', component: AdminComponent},
+  { path: 'usuario', component: UsuarioComponent},
+  { path: 'finalizar', component: PurchaseSuccessComponent},
+
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

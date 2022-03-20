@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarTiendaComponent } from './navbar-tienda/navbar-tienda.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductShopDisplayComponent } from './product-shop-display/product-shop-display.component';
+import { PurchaseSuccessComponent } from './purchase-success/purchase-success.component';
 
 
 @NgModule({
@@ -20,7 +21,9 @@ import { ProductShopDisplayComponent } from './product-shop-display/product-shop
     LoginUserComponent,
     HomeComponent,
     ProductCardComponent,
-    ProductShopDisplayComponent
+    ProductShopDisplayComponent,
+    PurchaseSuccessComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -9,12 +9,20 @@ export class UserControllerService {
   lastId = 0
   currentUser: User = null
   listUsers: User[] = []
-  constructor() { }
+  constructor() {
+    let id: number
 
-  addUser(name: string, email: string, password: string)
+    id = this.addUser("Camilo el grande", "camilolalarga@gamil.com", "12345678")
+    this.findUserById(id).setIsAdmin(true)
+    id = this.addUser("juan el peque", "juanelgigante@gamil.ganim", "Loljuan23")
+    this.findUserById(id).setIsAdmin(false)
+  }
+
+  addUser(name: string, email: string, password: string):number
   {
     this.listUsers.push(new User(this.lastId, name, email, password))
     this.lastId++
+    return this.lastId-1
   }
 
   getCurrentUser(): User
@@ -73,6 +81,9 @@ export class UserControllerService {
       let index: number = this.listUsers.indexOf(User)
       this.listUsers.splice(index, 1)
     }
+  }
+  logOut(){
+    this.currentUser = null
   }
 }
 
