@@ -31,7 +31,12 @@ export class LoginUserComponent implements OnInit {
       if(this.userController.findUserByName(name).getPassword() == password)
       {
         this.userController.setCurrentUser(name)
-        this.router.navigate(['/tienda']);
+        if(this.userController.findUserByName(name).getIsAdmin()){
+          this.router.navigate(['/admin']);
+        }else{
+          this.router.navigate(['/tienda']);
+        }
+
         console.log("User signed in")
       }
     }else{
