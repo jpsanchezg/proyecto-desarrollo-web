@@ -11,6 +11,7 @@ import { NavbarTiendaComponent } from './navbar-tienda/navbar-tienda.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductShopDisplayComponent } from './product-shop-display/product-shop-display.component';
 import { PurchaseSuccessComponent } from './purchase-success/purchase-success.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { PurchaseSuccessComponent } from './purchase-success/purchase-success.co
     ProductCardComponent,
     ProductShopDisplayComponent,
     PurchaseSuccessComponent,
+    ProductDetailComponent,
 
   ],
   imports: [

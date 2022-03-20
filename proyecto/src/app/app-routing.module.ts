@@ -8,12 +8,14 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { AdminComponent } from './admin/admin.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { PurchaseSuccessComponent } from './purchase-success/purchase-success.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'tienda', component: HeladosComponent},
+  { path: 'tienda/:id', component: ProductDetailComponent},
   { path: 'login', component: LoginUserComponent, data:{navbar:false}},
   { path: 'contacto', component: ContactoComponent},
   { path: 'admin', component: AdminComponent},

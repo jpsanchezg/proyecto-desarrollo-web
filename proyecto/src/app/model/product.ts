@@ -1,5 +1,5 @@
 export class Product{
-    
+
     private id: number
     private name: string
     private price: number
@@ -7,6 +7,7 @@ export class Product{
 
     constructor(id: number, name: string, price: number, image: string)
     {
+        this.id=id
         this.name = name
         this.price = price
         this.image = image
@@ -32,7 +33,8 @@ export class Product{
         return this.image
     }
 
-    setName(name: string) 
+
+    setName(name: string)
     {
         this.name = name
     }

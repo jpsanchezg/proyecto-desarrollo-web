@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { UserControllerService } from '../service/user-controller/user-controller.service';
 
@@ -12,7 +12,7 @@ import { UserControllerService } from '../service/user-controller/user-controlle
 })
 export class LoginUserComponent implements OnInit {
 
-  constructor(public userController: UserControllerService) { }
+  constructor(public userController: UserControllerService,public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,6 +20,7 @@ export class LoginUserComponent implements OnInit {
   {
     this.userController.addUser(name, email, password)
     this.userController.setCurrentUser(name)
+    this.router.navigate(['/tienda']);
   }
 
   signInUser(name: string, password: string){
@@ -30,13 +31,12 @@ export class LoginUserComponent implements OnInit {
       if(this.userController.findUserByName(name).getPassword() == password)
       {
         this.userController.setCurrentUser(name)
-
+        this.router.navigate(['/tienda']);
         console.log("User signed in")
       }
     }else{
       console.log("User not found")
     }
-
   }
 
 }
