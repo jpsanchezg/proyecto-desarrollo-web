@@ -15,6 +15,12 @@ import { PurchaseSuccessComponent } from './purchase-success/purchase-success.co
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserInvoicesComponent } from './user-invoices/user-invoices.component';
+import { ModuserComponent } from './moduser/moduser.component';
+import { DeleteProductComponent } from './delete-product/delete-product.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ModProductComponent } from './mod-product/mod-product.component';
+import { ModProductDetailComponent } from './mod-product-detail/mod-product-detail.component';
+import { DeleteProductDetailComponent } from './delete-product-detail/delete-product-detail.component';
 
 
 @NgModule({
@@ -30,6 +36,12 @@ import { UserInvoicesComponent } from './user-invoices/user-invoices.component';
     ProductDetailComponent,
     ShoppingCartComponent,
     UserInvoicesComponent,
+    ModuserComponent,
+    DeleteProductComponent,
+    AddProductComponent,
+    ModProductComponent,
+    ModProductDetailComponent,
+    DeleteProductDetailComponent,
 
   ],
   imports: [

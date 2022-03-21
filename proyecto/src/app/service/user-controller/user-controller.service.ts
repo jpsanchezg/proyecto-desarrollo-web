@@ -25,12 +25,28 @@ export class UserControllerService {
     this.lastId++
     return this.lastId-1
   }
+  modUser(name: string, email: string, password: string){
+    this.currentUser.setName(name)
+    this.currentUser.setEmail(email)
+    this.currentUser.setPassword(password)
+    this.listUsers.forEach(element => {
+      if(element.getId() == this.currentUser.getId())
+      {
+        element.setName(name)
+        element.setEmail(email)
+        element.setPassword(password)
+      }
+    });
+  }
 
   getCurrentUser(): User
   {
     return this.currentUser
   }
 
+  getallUsers(): User[]{
+    return this.listUsers
+  }
   setCurrentUser(name: string)
   {
     this.currentUser = this.findUserByName(name)

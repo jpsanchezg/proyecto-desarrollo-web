@@ -11,6 +11,13 @@ import { PurchaseSuccessComponent } from './purchase-success/purchase-success.co
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { UserInvoicesComponent } from './user-invoices/user-invoices.component';
+import { ModuserComponent } from './moduser/moduser.component';
+import { DeleteProductComponent } from './delete-product/delete-product.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { ModProductComponent } from './mod-product/mod-product.component';
+import { ModProductDetailComponent } from './mod-product-detail/mod-product-detail.component';
+import { DeleteProductDetailComponent } from './delete-product-detail/delete-product-detail.component';
+
 
 
 
@@ -24,8 +31,13 @@ const routes: Routes = [
   { path: 'usuario', component: UsuarioComponent},
   { path: 'finalizar', component: PurchaseSuccessComponent},
   { path: 'carrito', component: ShoppingCartComponent},
-  { path: 'facturas', component: UserInvoicesComponent}
-
+  { path: 'facturas', component: UserInvoicesComponent},
+  { path: 'modificarperfil', component: ModuserComponent},
+  { path: 'agregar-producto' , component: AddProductComponent },
+  { path: 'borrar-producto', component: DeleteProductComponent},
+  { path: 'borrar-producto/:id', component: DeleteProductDetailComponent},
+  { path: 'modificar-producto', component: ModProductComponent},
+  {path:'modificar-producto/:id', component: ModProductDetailComponent},
 
 ];
 

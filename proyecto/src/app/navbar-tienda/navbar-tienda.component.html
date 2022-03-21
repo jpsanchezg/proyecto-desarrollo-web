@@ -8,9 +8,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/tienda" routerLinkActive="active">Helados</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/contacto" routerLinkActive="active">Contacto</a>
-        </li>
+
       </ul>
     </div>
 
@@ -29,19 +27,16 @@
   <div class="adminNav" *ngIf="ifAdmin() && iflogin()">
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <span class="nav-item">
-        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Nuevo producto</a>
+        <button class="btn-solid-sm" (click)="agregarproducto()" >Nuevo producto</button>
       </span>
       <span class="nav-item">
-        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Editar producto</a>
+        <a class="btn-solid-sm" routerLink="/modificar-producto" routerLinkActive="active">Editar producto</a>
       </span>
       <span class="nav-item">
         <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Ver productos</a>
       </span>
       <span class="nav-item">
-        <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Eliminar productos</a>
-      </span>
-      <span class="nav-item">
-        <button class="btn-outline-reg" (click)="logOutUser()">Cerrar sesion</button>
+        <a class="btn-solid-sm" routerLink="/borrar-producto" routerLinkActive="active">Eliminar productos</a>
       </span>
     </div>
   </div>
@@ -52,15 +47,12 @@
         <a class="btn-solid-sm" routerLink="/tienda" routerLinkActive="active">Comprar</a>
       </span>
       <span class="nav-item">
-        <a class="btn-solid-sm" routerLink="/facturas" routerLinkActive="active">Listado de compras</a>
+        <a class="fa fa-user fa-2x" routerLink="/usuario" routerLinkActive="active"></a>
       </span>
 
-      <span class="nav-item">
-        <a class="btn-solid-sm" routerLink="/facturas" routerLinkActive="active">Listado de facturas</a>
-      </span>
-      <span class="nav-item">
-        <button class="btn-outline-reg" (click)="logOutUser()">Cerrar sesion</button>
-      </span>
+      <div *ngIf="haveproducts()">
+        <button class="fa fa-shopping-cart fa-2x" routerLink="/carrito" routerLinkActive="active"></button>
+      </div>
     </div>
   </div>
 </nav>

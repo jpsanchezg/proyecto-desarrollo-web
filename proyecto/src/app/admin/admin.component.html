@@ -1,1 +1,18 @@
-<p>admin works!</p>
+<div class="admincontainer">
+  <div class="invoices-container">
+    <h1 class="title">Facturas ultimo mes</h1>
+    <div class="invoice" *ngFor="let invoice of this.listInvoices">
+      <p class="invoice-date">{{invoice.getDate().toLocaleString()}}</p>
+      <div class="purchase" *ngFor="let purchase of invoice.getListPurchases()">
+        <p class="product-name">
+          {{this.productController.findProductById(purchase.getProductId()).getName()}}
+        </p>
+        <p class="purchase-quantity">x{{purchase.getQuantity()}}</p>
+      </div>
+      <p class="invoice-total-label">Total:</p>
+      <p class="invoice-total">${{invoice.getPriceTotal()}}</p>
+    </div>
+    <p class="total-period">Total periodo: ${{this.getTotalInvoices()}}</p>
+  </div>
+  <button class="btn-solid-sm" (click)="logOutUser()">Cerrar sesion</button>
+</div>

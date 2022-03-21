@@ -13,7 +13,17 @@
   width: 100%;
   height: 100%;
 }
-
+.fa{
+  background-color: #0092ff;
+  color: white;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  border: none;
+  border-radius: 50%;
+}
 .adminNav
 {
   display: flex;

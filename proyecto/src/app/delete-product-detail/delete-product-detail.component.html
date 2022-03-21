@@ -1,0 +1,12 @@
+<div class="product-detail">
+  <h1 class="product-name">{{this.product.getName()}}</h1>
+  <div class="product-image-price">
+    <img class="product-image" src={{this.product.getImage()}}>
+    <div class="product-price-button">
+      <p class="product-price">Precio: ${{this.product.getPrice()}}</p>
+      <button class="add-to-cart" value="Añadir al carrito" (click)="deleteProduct(this.product.getId())"
+        [routerLink]="['/carrito']">Eliminar
+        producto</button>
+    </div>
+  </div>
+</div>

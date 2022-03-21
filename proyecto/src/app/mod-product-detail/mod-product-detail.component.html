@@ -1,0 +1,11 @@
+<div class="product-detail">
+  <div class="product-image-price">
+    <img class="product-image" src={{this.product.getImage()}}>
+    <div class="product-price-button">
+      <input class="modbox" type="text" name="nameice" id="nameice" placeholder="{{this.product.getName()}}" #nameice>
+      <input class="modbox" type="number"  min="1" max="10" name="priceice" id="priceice" placeholder="{{this.product.getPrice()}}" [(ngModel)]="price" >
+      <button class="add-to-cart" value="Añadir al carrito" (click)="modProduct(nameice.value,this.product.getId())" [routerLink]="['/carrito']">Modificar
+        producto</button>
+    </div>
+  </div>
+</div>
