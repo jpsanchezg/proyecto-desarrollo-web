@@ -12,9 +12,9 @@ export class UserControllerService {
   constructor() {
     let id: number
 
-    id = this.addUser("Camilo el grande", "camilolalarga@gamil.com", "12345678")
+    id = this.addUser("Admin", "camilolalarga@gmail.com", "12345678")
     this.findUserById(id).setIsAdmin(true)
-    id = this.addUser("juan el peque", "juanelgigante@gamil.ganim", "Loljuan23")
+    id = this.addUser("juan pablo sanchez", "juanelgigante@gmail.com", "Loljuan23")
     this.findUserById(id).setIsAdmin(false)
     this.currentUser = this.findUserById(id)
   }

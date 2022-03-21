@@ -66,13 +66,11 @@ export class AdminComponent implements OnInit {
     logOutUser() {
     console.log(this.userController.getCurrentUser())
     if (!this.iflogin()) {
-      console.log("logout perra1");
     }
 
     this.userController.logOut();
 
     if (!this.iflogin()) {
-      console.log("logout perra2");
       this.ngOnInit();
       this.router.navigate(['']);
     }

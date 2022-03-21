@@ -15,11 +15,11 @@ export class NavbarTiendaComponent implements OnInit {
   }
   iflogin(): boolean {
     if (this.userController.getCurrentUser() != null) {
-     // this.router.navigate(['tienda']);
+      //this.router.navigate(['tienda']);
       return true;
 
     }
-      return false;
+    return false;
   }
   ifAdmin(): boolean {
     if (this.userController.getCurrentUser() != null) {
@@ -27,7 +27,18 @@ export class NavbarTiendaComponent implements OnInit {
     }
     return false;
   }
+  logOutUser() {
+    console.log(this.userController.getCurrentUser())
+    if (!this.iflogin()) {
+    }
 
+    this.userController.logOut();
+
+    if (!this.iflogin()) {
+      this.ngOnInit();
+      this.router.navigate(['']);
+    }
+  }
 
   haveproducts(): boolean {
     if (this.userController.getCurrentUser() != null) {
@@ -37,7 +48,7 @@ export class NavbarTiendaComponent implements OnInit {
     }
     return false;
   }
-  agregarproducto(){
+  agregarproducto() {
     this.router.navigate(['agregar-producto']);
   }
 }

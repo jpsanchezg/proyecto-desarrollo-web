@@ -32,7 +32,7 @@ export class LoginUserComponent implements OnInit {
       {
         this.userController.setCurrentUser(name)
         if(this.userController.findUserByName(name).getIsAdmin()){
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/modificar-producto']);
         }else{
           this.router.navigate(['/tienda']);
         }

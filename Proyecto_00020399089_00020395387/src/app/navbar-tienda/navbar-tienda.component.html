@@ -27,7 +27,7 @@
   <div class="adminNav" *ngIf="ifAdmin() && iflogin()">
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <span class="nav-item">
-        <button class="btn-solid-sm" (click)="agregarproducto()" >Nuevo producto</button>
+        <button class="btn-solid-sm" (click)="agregarproducto()">Nuevo producto</button>
       </span>
       <span class="nav-item">
         <a class="btn-solid-sm" routerLink="/modificar-producto" routerLinkActive="active">Editar producto</a>
@@ -37,6 +37,12 @@
       </span>
       <span class="nav-item">
         <a class="btn-solid-sm" routerLink="/borrar-producto" routerLinkActive="active">Eliminar productos</a>
+      </span>
+      <span class="nav-item">
+        <a class="btn-solid-sm" routerLink="/admin" routerLinkActive="active">Reporte</a>
+      </span>
+      <span class="nav-item">
+        <button class="btn-solid-sm" (click)="logOutUser()">Cerrar sesión</button>
       </span>
     </div>
   </div>
