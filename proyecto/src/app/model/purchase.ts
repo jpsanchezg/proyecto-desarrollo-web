@@ -2,18 +2,18 @@ import { Product } from "./product";
 
 export class Purchase
 {
-    private product: Product
+    private productId: number
     private quantity: number
 
-    constructor(product: Product, quantity: number)
+    constructor(productId: number, quantity: number)
     {
-        this.product = product
+        this.productId = productId
         this.quantity = quantity
     }
 
-    getProduct(): Product
+    getProductId(): number
     {
-        return this.product
+        return this.productId
     }
 
     getQuantity(): number

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Purchase } from '../model/purchase';
+import { User } from '../model/user';
+import { ProductControllerService } from '../service/product-controller/product-controller.service';
 import { UserControllerService } from '../service/user-controller/user-controller.service';
 
 @Component({
@@ -10,12 +12,19 @@ import { UserControllerService } from '../service/user-controller/user-controlle
 export class ProductCardComponent implements OnInit {
 
   public listPurchases: Purchase[] = []
-  constructor(private userControllerService: UserControllerService) 
+  public currentUser: User
+  constructor(private userControllerService: UserControllerService, public productControllerService: ProductControllerService) 
   { 
-    if(userControllerService.getCurrentUser() != null)
+    this.currentUser = userControllerService.getCurrentUser()
+    if(this.currentUser != null)
     {
-      this.listPurchases = userControllerService.getCurrentUser().getShoppingCart()
+      this.listPurchases = this.currentUser.getShoppingCart()
     }
+  }
+
+  removePurchase(purchase: Purchase)
+  {
+    this.currentUser.removePurchase(purchase)
   }
 
   ngOnInit(): void 

@@ -2,7 +2,8 @@ import { Product } from 'src/app/model/product';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductControllerService } from '../service/product-controller/product-controller.service';
-
+import { UserControllerService } from '../service/user-controller/user-controller.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,11 +12,20 @@ import { ProductControllerService } from '../service/product-controller/product-
 })
 export class ProductDetailComponent implements OnInit {
 
-  private id: number;
-  private product: Product;
-  constructor(private route: ActivatedRoute,private productController: ProductControllerService) {
+  public quantity: number = 1
+  public product: Product;
+  constructor(private route: ActivatedRoute, private productController: ProductControllerService, private userController: UserControllerService) {
     this.product = this.productController.findProductById(this.route.snapshot.params['id']);
-    console.log(this.product.getName());
+  }
+
+  addToCart()
+  {
+    let currentUser: User
+    currentUser = this.userController.getCurrentUser()
+    if(currentUser != null)
+    {
+      currentUser.addPurchase(this.product.getId(), this.quantity)
+    }
   }
 
   ngOnInit(): void {

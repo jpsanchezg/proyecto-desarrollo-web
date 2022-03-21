@@ -9,6 +9,8 @@ import { AdminComponent } from './admin/admin.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { PurchaseSuccessComponent } from './purchase-success/purchase-success.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { UserInvoicesComponent } from './user-invoices/user-invoices.component';
 
 
 
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent},
   { path: 'usuario', component: UsuarioComponent},
   { path: 'finalizar', component: PurchaseSuccessComponent},
+  { path: 'carrito', component: ShoppingCartComponent},
+  { path: 'facturas', component: UserInvoicesComponent}
 
 
 ];

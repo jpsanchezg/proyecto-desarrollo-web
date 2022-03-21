@@ -6,9 +6,9 @@ import { User } from 'src/app/model/user';
 })
 export class UserControllerService {
 
-  lastId = 0
-  currentUser: User = null
-  listUsers: User[] = []
+  private lastId = 0
+  private currentUser: User = null
+  private listUsers: User[] = []
   constructor() {
     let id: number
 
@@ -16,6 +16,7 @@ export class UserControllerService {
     this.findUserById(id).setIsAdmin(true)
     id = this.addUser("juan el peque", "juanelgigante@gamil.ganim", "Loljuan23")
     this.findUserById(id).setIsAdmin(false)
+    this.currentUser = this.findUserById(id)
   }
 
   addUser(name: string, email: string, password: string):number
@@ -82,7 +83,9 @@ export class UserControllerService {
       this.listUsers.splice(index, 1)
     }
   }
-  logOut(){
+
+  logOut()
+  {
     this.currentUser = null
   }
 }

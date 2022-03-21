@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductShopDisplayComponent } from './product-shop-display/product-shop-display.component';
 import { PurchaseSuccessComponent } from './purchase-success/purchase-success.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { UserInvoicesComponent } from './user-invoices/user-invoices.component';
 
 
 @NgModule({
@@ -25,11 +28,14 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     ProductShopDisplayComponent,
     PurchaseSuccessComponent,
     ProductDetailComponent,
+    ShoppingCartComponent,
+    UserInvoicesComponent,
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
   bootstrap: [AppComponent]

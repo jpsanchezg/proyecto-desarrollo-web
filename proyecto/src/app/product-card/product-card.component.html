@@ -1,9 +1,15 @@
-<div class="product-card" *ngFor="let purchase of listPurchases" >
-    <span class="helper"></span>
-    <img class="product-image" src={{purchase.getProduct().getImage()}}/>
-    <div class="product-info">
-        <p class="product-name">{{purchase.getProduct().getName()}}</p>
-        <p class="product-price">${{purchase.getProduct().getPrice()}}</p>
+<div class="product-card-container">
+    <div class="product-card" *ngFor="let purchase of listPurchases">
+        <span class="helper"></span>
+        <img class="product-image"
+            src={{this.productControllerService.findProductById(purchase.getProductId()).getImage()}} />
+        <div class="product-info">
+            <p class="product-name">{{this.productControllerService.findProductById(purchase.getProductId()).getName()}}</p>
+            <p class="product-price">
+                ${{this.productControllerService.findProductById(purchase.getProductId()).getPrice()}}
+            </p>
+        </div>
+        <p class="product-quantity">x{{purchase.getQuantity()}}</p>
+        <button class="remove-purchase" (click)="removePurchase(purchase)">X</button>
     </div>
-    <p class="product-quantity">{{purchase.getQuantity()}}</p>
 </div>

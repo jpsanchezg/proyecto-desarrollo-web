@@ -67,22 +67,28 @@ export class User
     {
         this.password = password
     }
-    addPurchase(product: Product, quantity: number)
+
+    addPurchase(productId: number, quantity: number)
     {
         for(let purchase of this.shoppingCart)
         {
-            if(purchase.getProduct().getId() == product.getId())
+            if(purchase.getProductId() == productId)
             {
                 purchase.setQuantity(purchase.getQuantity() + quantity)
+                return
             }
-            return
         }
-        this.shoppingCart.push(new Purchase(product, quantity))
+        this.shoppingCart.push(new Purchase(productId, quantity))
     }
 
     removePurchase(purchase: Purchase)
     {
         let index: number = this.shoppingCart.indexOf(purchase)
         this.shoppingCart.splice(index, 1)
+    }
+
+    removeAllPruchases()
+    {
+        this.shoppingCart = []
     }
 }

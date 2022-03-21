@@ -1,0 +1,14 @@
+<div class="shopping-cart">
+    <h1 class="title">Carrito de compras</h1>
+    <div class="cart-detail">
+        <app-product-card></app-product-card>
+        <div class="invoice-preview">
+            <p class="invoice-entry" *ngFor="let purchase of this.currentUser.getShoppingCart()">
+                {{this.productController.findProductById(purchase.getProductId()).getName()}}
+                x{{purchase.getQuantity()}}
+            </p>
+            <p class="subtotal">Subtotal ${{getCartSubtotal()}}</p>
+            <button class="buy-cart" (click)="buyCart()" [routerLink]="['/finalizar']">Comprar</button>
+        </div>
+    </div>
+</div>
