@@ -14,43 +14,42 @@ import { ProductControllerService } from '../service/product-controller/product-
 })
 export class AdminComponent implements OnInit {
 
- listInvoices: Invoice[]
+  listInvoices: Invoice[]
   currentUser: User[]
   user: User
 
-  constructor(public userController: UserControllerService, public router: Router,private invoiceController: InvoiceControllerService, public productController: ProductControllerService) {
+  constructor(public userController: UserControllerService, public router: Router, private invoiceController: InvoiceControllerService, public productController: ProductControllerService) {
     this.currentUser = this.userController.getallUsers()
     this.currentUser.forEach(element => {
-      this.getInvoicesInLastMonth()
+      this.user = element
+      if (this.user != null) {
+        this.getInvoicesInLastMonth()
+      }
     });
   }
 
-  getInvoicesInLastMonth()
-  {
+  getInvoicesInLastMonth() {
     let currentDate: Date = new Date()
     let monthAgoDate: Date = new Date()
     monthAgoDate.setDate(currentDate.getDate() - 30)
     this.listInvoices = this.invoiceController.findInvoicesByUserIdAndDateRange(this.user.getId(), monthAgoDate, currentDate)
+    console.log(this.listInvoices)
   }
 
-    getInvoicesInDateRange(dateString1: string, dateString2: string)
-  {
+  getInvoicesInDateRange(dateString1: string, dateString2: string) {
     let date1: Date = new Date(dateString1)
     let date2: Date = new Date(dateString2)
     this.listInvoices = this.invoiceController.findInvoicesByUserIdAndDateRange(this.user.getId(), date1, date2)
   }
 
-  getTotalInvoices()
-  {
+  getTotalInvoices() {
     let total: number = 0
-    for(let invoice of this.listInvoices)
-    {
+    for (let invoice of this.listInvoices) {
       total += invoice.getPriceTotal()
     }
     return total
   }
-  getInvoices()
-  {
+  getInvoices() {
     this.listInvoices = this.invoiceController.findInvoicesByUserId(this.user.getId())
   }
 
@@ -63,7 +62,7 @@ export class AdminComponent implements OnInit {
     }
     return false;
   }
-    logOutUser() {
+  logOutUser() {
     console.log(this.userController.getCurrentUser())
     if (!this.iflogin()) {
     }

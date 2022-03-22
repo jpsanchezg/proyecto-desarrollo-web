@@ -11,7 +11,7 @@ export class InvoiceControllerService {
   private listInvoices: Invoice[] = []
   private lastId = 0
 
-  constructor(private productControllerService: ProductControllerService) 
+  constructor(private productControllerService: ProductControllerService)
   {
     let listPurchases: Purchase[] = []
     listPurchases.push(new Purchase(0, 5))
@@ -21,6 +21,10 @@ export class InvoiceControllerService {
     listPurchases.push(new Purchase(0, 2))
     listPurchases.push(new Purchase(5, 9))
     this.addInvoice(1, listPurchases)
+    listPurchases.push(new Purchase(5, 9))
+    listPurchases.push(new Purchase(2, 9))
+    listPurchases.push(new Purchase(2, 9))
+    this.addInvoice(2, listPurchases)
   }
 
   getListInvoices(): Invoice[]
@@ -80,7 +84,7 @@ export class InvoiceControllerService {
   findInvoicesByUserIdAndDateRange(userId: number, date1: Date, date2: Date)
   {
     let invoices: Invoice[] = []
-    
+
     for (let invoice of this.findInvoicesByRangeDates(date1, date2))
     {
       if (invoice.getUserId() == userId)

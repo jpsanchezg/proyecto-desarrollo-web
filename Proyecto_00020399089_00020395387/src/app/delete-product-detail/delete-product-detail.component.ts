@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router'; import { ProductContro
 import { UserControllerService } from '../service/user-controller/user-controller.service';
 import { User } from '../model/user';
 import { Product } from 'src/app/model/product';
-import  Swal  from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-delete-product-detail',
@@ -18,19 +18,33 @@ export class DeleteProductDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute, private productController: ProductControllerService, private userController: UserControllerService, public router: Router) {
     this.product = this.productController.findProductById(this.route.snapshot.params['id']);
   }
-
   ngOnInit(): void {
   }
 
   deleteProduct(id: number) {
     if (this.productController.findProductById(id) != null) {
-      this.productController.deleteProduct(this.productController.findProductById(id))
-      Swal.fire(
-        'Good job!',
-        'Su producto ha sido borrado!',
-        'success'
-      )
-      this.router.navigate(['borrar-producto']);
+      Swal.fire({
+        title: 'Estas seguro?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Borrar producto!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Borrado!',
+            'Tu producto ha sido borrado.',
+            'success'
+          )
+          this.productController.deleteProduct(this.productController.findProductById(id))
+          this.router.navigate(['borrar-producto']);
+        }
+        if (!result.isConfirmed) {
+          this.router.navigate(['borrar-producto']);
+        }
+      })
     }
   }
 
