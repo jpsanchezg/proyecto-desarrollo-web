@@ -31,6 +31,6 @@ export class AddProductComponent implements OnInit {
     console.log(this.quantity);
     console.log("agregando el producto");
     this.productController.addProduct(nameice, this.quantity, "prueba")
-    this.router.navigate(['admin']);
+    this.router.navigate(['tienda']);
   }
 }

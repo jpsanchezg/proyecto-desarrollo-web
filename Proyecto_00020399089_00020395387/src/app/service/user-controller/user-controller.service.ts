@@ -17,6 +17,8 @@ export class UserControllerService {
     id = this.addUser("juan pablo sanchez", "juanelgigante@gmail.com", "Loljuan23")
     this.findUserById(id).setIsAdmin(false)
     this.currentUser = this.findUserById(id)
+    id = this.addUser("juan Carlos", "juancarlos@gmail.com", "1234567")
+    this.findUserById(id).setIsAdmin(false)
   }
 
   addUser(name: string, email: string, password: string):number

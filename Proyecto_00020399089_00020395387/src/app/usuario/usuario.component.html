@@ -1,5 +1,32 @@
-<div class="Usercontainer">
-  <button class="btn-solid-sm" (click)="gotoModUser()">Modificar perfil</button>
-  <button class="btn-solid-sm" (click)="gotoFacturas()">Ultimas Compras</button>
-  <button class="btn-solid-sm" (click)="logOutUser()">Cerrar sesion</button>
+<div class="user-container">
+
+    <table>
+      <tr>
+        <td>
+          <button class="user-card" (click)="gotoModUser()">
+            <a class="fa fa-user-edit fa-3x"></a>
+            <div class="user-info">
+              <p class="user-name">modificar usuario</p>
+            </div>
+          </button>
+        </td>
+        <td>
+          <button class="user-card" (click)="gotoFacturas()">
+            <a class="fa fa-cart-arrow-down fa-3x"></a>
+            <div class="user-info">
+              <p class="user-name">Ultimas Compras</p>
+            </div>
+          </button>
+        </td>
+        <td>
+          <button class="user-carddelete" (click)="logOutUser()">
+            <a class="fa fa-plus-circle fa-3x"></a>
+            <div class="user-infodelete">
+              <p class="user-name">Cerrar sesion</p>
+            </div>
+          </button>
+        </td>
+      </tr>
+    </table>
+
 </div>

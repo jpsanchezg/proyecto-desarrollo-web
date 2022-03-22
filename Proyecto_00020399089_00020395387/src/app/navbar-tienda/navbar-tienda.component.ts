@@ -42,7 +42,7 @@ export class NavbarTiendaComponent implements OnInit {
 
   haveproducts(): boolean {
     if (this.userController.getCurrentUser() != null) {
-      if (this.userController.getCurrentUser().getShoppingCart != null) {
+      if (this.userController.getCurrentUser().getShoppingCart().length > 0) {
         return true;
       }
     }
