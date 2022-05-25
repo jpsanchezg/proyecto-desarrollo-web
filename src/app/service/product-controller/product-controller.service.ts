@@ -12,6 +12,7 @@ export class ProductControllerService {
   private lastId = 0
 
   constructor(private http: HttpClient, private _sanitizer: DomSanitizer) {
+    this.getListProducts();
   }
 
   async getListProducts(): Promise<Product[]> {
@@ -19,7 +20,6 @@ export class ProductControllerService {
     this.listProducts = [];
     json.forEach((element: any) => {
       var imagePath = this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + element.image));
-      //debugger;
       var product: Product = new Product(element.id, element.name, + element.price, imagePath);
       this.listProducts.push(product);
     });
@@ -27,22 +27,18 @@ export class ProductControllerService {
   }
 
   addProduct(name: string, price: number, image: string) {
-    this.http.post(`${environment.baseURL}/product/create`, {name: name, price: price, image: image});
+    this.http.post(`${environment.baseURL}/product/create`, { name: name, price: price, image: image });
+    this.getListProducts();
   }
 
   modProduct(product: Product, name: string, price: number) {
-    this.listProducts.forEach(element => {
-      if (element.getId() == product.getId()) {
-        element.setName(name)
-        element.setPrice(price)
-      }
-    });
+    this.http.post(`${environment.baseURL}/product/update`, { name: name, price: price, id: product.getId() });
+    this.getListProducts();
   }
 
   deleteProduct(product: Product) {
-    this.listProducts.splice(this.listProducts.indexOf(product), 1)
-    this.listProducts.filter(item => item !== product)
-    console.log(this.listProducts.length)
+    this.http.delete(`${environment.baseURL}/product/delete/${product.getId()}`);
+    this.getListProducts();
   }
 
   findProductById(id: number): Product {
@@ -57,29 +53,24 @@ export class ProductControllerService {
   findProductByName(name: string): Product {
     for (let product of this.listProducts) {
       if (product.getName() == name) {
-        return product
+        return product;
       }
     }
-    return null
+    return null;
   }
 
   removeProductByName(name: string) {
-    let product: Product
-    product = this.findProductByName(name)
+    let product: Product;
+    product = this.findProductByName(name);
     if (product != null)
-      this.removeProduct(product)
+      this.removeProductById(product.getId());
   }
 
   removeProductById(id: number) {
-    let product: Product
-    product = this.findProductById(id)
-    this.removeProduct(product)
+    this.http.delete(`${environment.baseURL}/product/delete/${id}`).toPromise();
   }
 
   removeProduct(product: Product) {
-    if (product != null) {
-      let index: number = this.listProducts.indexOf(product)
-      this.listProducts.splice(index, 1)
-    }
+    this.removeProductById(product.getId());
   }
 }

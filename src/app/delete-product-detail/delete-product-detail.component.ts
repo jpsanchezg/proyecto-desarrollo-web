@@ -25,7 +25,7 @@ export class DeleteProductDetailComponent implements OnInit {
     if (this.productController.findProductById(id) != null) {
       Swal.fire({
         title: 'Estas seguro?',
-        text: "You won't be able to revert this!",
+        text: "Esto no se puede revertir despues!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

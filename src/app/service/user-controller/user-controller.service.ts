@@ -33,11 +33,11 @@ export class UserControllerService {
     }
   }
 
-  addUser(name: string, username: string, password: string):boolean
+  async addUser(name: string, username: string, password: string):Promise<boolean>
   {
     try
     {
-      this.http.post(`${environment.baseURL}/user/create`, {username: username, password: password, name: name}).toPromise();
+      await this.http.post(`${environment.baseURL}/user/create`, {username: username, password: password, name: name}).toPromise();
     }
     catch(e)
     {

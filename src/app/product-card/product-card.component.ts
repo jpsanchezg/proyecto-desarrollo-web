@@ -41,6 +41,7 @@ export class ProductCardComponent implements OnInit {
           'success'
         )
         this.currentUser.removePurchase(purchase)
+        this.userControllerService.modUser("", this.currentUser.getUsername(), "", this.currentUser.getShoppingCart());
         if (this.currentUser.getShoppingCart().length == 0) {
           this.router.navigate(['tienda'])
         }
