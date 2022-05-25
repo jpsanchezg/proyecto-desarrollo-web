@@ -1,0 +1,31 @@
+<div class="loginbg">
+  <div class="login-wrap">
+    <div class="login-html">
+      <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Modificar usuario</label>
+      <div class="login-form">
+        <div class="sign-up-htm">
+          <div class="group">
+            <label for="user" class="label">Usuario</label>
+            <input id="user" type="text" class="input" name="username" #username>
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Contraseña Actual</label>
+            <input id="pass" type="password" class="input" data-type="password" name="Actualpassword" #Actualpassword>
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Nueva Contraseña</label>
+            <input id="pass" type="password" class="input" data-type="password" name="NewPassword" #NewPassword>
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Correo electronico</label>
+            <input id="email" type="text" class="input" name="email" #email>
+          </div>
+          <div class="group">
+            <button type="submit" class="button" value="Crear cuenta"
+              (click)="modUser(username.value,email.value,NewPassword.value)">Crear cuenta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
