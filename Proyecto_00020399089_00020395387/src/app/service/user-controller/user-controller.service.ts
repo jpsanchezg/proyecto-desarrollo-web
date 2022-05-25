@@ -22,11 +22,21 @@ export class UserControllerService {
       window.sessionStorage.setItem("jwt", responseBody);
       var jsonCurrentUser = await this.http.get(`${environment.baseURL}/user/${username}`).toPromise();
 
+<<<<<<< HEAD
     }
     catch(e)
     {
       console.error(e);
     }
+=======
+    id = this.addUser("Admin", "camilolalarga@gmail.com", "12345678")
+    this.findUserById(id).setIsAdmin(true)
+    id = this.addUser("juan pablo sanchez", "juanelgigante@gmail.com", "Loljuan23")
+    this.findUserById(id).setIsAdmin(false)
+    this.currentUser = this.findUserById(id)
+    id = this.addUser("juan Carlos", "juancarlos@gmail.com", "1234567")
+    this.findUserById(id).setIsAdmin(false)
+>>>>>>> nuevos-cambios
   }
 
   addUser(name: string, username: string, password: string):boolean
