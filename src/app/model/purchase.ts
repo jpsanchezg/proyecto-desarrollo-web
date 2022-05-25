@@ -1,14 +1,13 @@
-import { Product } from "./product";
-
 export class Purchase
 {
-    private productId: number
-    private quantity: number
+    private id: number;
+    private productId: number;
+    private quantity: number;
 
     constructor(productId: number, quantity: number)
     {
-        this.productId = productId
-        this.quantity = quantity
+        this.productId = productId;
+        this.quantity = quantity;
     }
 
     getProductId(): number
@@ -24,5 +23,15 @@ export class Purchase
     setQuantity(quantity: number)
     {
         this.quantity = quantity
+    }
+
+    getId(): number
+    {
+        return this.id;
+    }
+
+    setId(id: number)
+    {
+        this.id = id;
     }
 }

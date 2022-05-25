@@ -25,7 +25,7 @@ export class UserInvoicesComponent implements OnInit {
 
   getInvoices()
   {
-    this.listInvoices = this.invoiceController.findInvoicesByUserId(this.currentUser.getId())
+    
   }
 
   getInvoicesInLastMonth()
@@ -33,14 +33,13 @@ export class UserInvoicesComponent implements OnInit {
     let currentDate: Date = new Date()
     let monthAgoDate: Date = new Date()
     monthAgoDate.setDate(currentDate.getDate() - 30)
-    this.listInvoices = this.invoiceController.findInvoicesByUserIdAndDateRange(this.currentUser.getId(), monthAgoDate, currentDate)
   }
 
   getInvoicesInDateRange(dateString1: string, dateString2: string)
   {
     let date1: Date = new Date(dateString1)
     let date2: Date = new Date(dateString2)
-    this.listInvoices = this.invoiceController.findInvoicesByUserIdAndDateRange(this.currentUser.getId(), date1, date2)
+    
   }
 
   getTotalInvoices()

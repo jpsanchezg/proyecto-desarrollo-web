@@ -8,40 +8,31 @@ import { UserControllerService } from '../service/user-controller/user-controlle
 
   templateUrl: './login-user.component.html',
 
-  styleUrls: ['./login-user.component.css']
+  styleUrls: ['./login-user.component.css'],
 })
 export class LoginUserComponent implements OnInit {
+  constructor(
+    public userController: UserControllerService,
+    public router: Router
+  ) {}
 
-  constructor(public userController: UserControllerService,public router: Router) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-  registerUser(name: string, email: string, password: string)
-  {
-    this.userController.addUser(name, email, password)
-    this.userController.setCurrentUser(name)
+  registerUser(name: string, username: string, password: string) {
+    this.userController.addUser(name, username, password);
+    this.userController.login(username, password);
     this.router.navigate(['/tienda']);
   }
 
-  signInUser(name: string, password: string){
-    if(this.userController.findUserByName(name) != null)
-    {
-      console.log("user found")
-      console.log(this.userController.findUserByName(name).getPassword() + " " + password)
-      if(this.userController.findUserByName(name).getPassword() == password)
-      {
-        this.userController.setCurrentUser(name)
-        if(this.userController.findUserByName(name).getIsAdmin()){
+  signInUser(username: string, password: string) {
+    this.userController.login(username, password).then(value => {
+      if (value) {
+        if (this.userController.getCurrentUser().getIsAdmin()) {
           this.router.navigate(['/modificar-producto']);
-        }else{
+        } else {
           this.router.navigate(['/tienda']);
         }
-
-        console.log("User signed in")
       }
-    }else{
-      console.log("User not found")
-    }
+    });
   }
-
 }

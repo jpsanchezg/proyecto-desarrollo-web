@@ -31,7 +31,7 @@ export class ShoppingCartComponent implements OnInit {
   {
     if(this.currentUser.getShoppingCart().length != 0)
     {
-      this.invoiceController.addInvoice(this.currentUser.getId(), this.currentUser.getShoppingCart())
+      //TODO
       this.currentUser.removeAllPruchases()
       debugger
     }

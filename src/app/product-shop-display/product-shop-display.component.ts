@@ -11,9 +11,11 @@ import { UserControllerService } from '../service/user-controller/user-controlle
 })
 export class ProductShopDisplayComponent implements OnInit {
 
-  public listProducts: Product[]
+  public listProducts: Product[] = [];
   constructor(private productControllerService: ProductControllerService, private usercontrol: UserControllerService, private router: Router) {
-    this.listProducts = productControllerService.getListProducts()
+    this.productControllerService.getListProducts().then(value =>{
+      this.listProducts = value;
+    });
   }
 
   listProductsToMatrix(): Product[][] {
@@ -42,8 +44,9 @@ export class ProductShopDisplayComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-
+  ngOnInit(): void 
+  {
+    
   }
 
 

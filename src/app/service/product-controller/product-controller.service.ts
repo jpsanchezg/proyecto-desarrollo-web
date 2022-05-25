@@ -1,5 +1,8 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, SecurityContext } from '@angular/core';
 import { Product } from 'src/app/model/product';
+import { environment } from 'src/environments/environment';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -8,27 +11,23 @@ export class ProductControllerService {
   private listProducts: Product[] = []
   private lastId = 0
 
-  constructor() {
-    this.addProduct("Helado de Mandarina", 5000, "assets/images/products/tangerine.webp")
-    this.addProduct("Helado de Vainilla", 5000, "assets/images/products/vanilla.webp")
-    this.addProduct("Helado de Mandarina", 5000, "assets/images/products/tangerine.webp")
-    this.addProduct("Helado de Vainilla", 5000, "assets/images/products/vanilla.webp")
-    this.addProduct("Helado de Mandarina", 5000, "assets/images/products/tangerine.webp")
-    this.addProduct("Helado de Vainilla", 5000, "assets/images/products/vanilla.webp")
-    this.addProduct("Helado de Mandarina", 5000, "assets/images/products/tangerine.webp")
-    this.addProduct("Helado de Vainilla", 5000, "assets/images/products/vanilla.webp")
-    this.addProduct("Helado de Mandarina", 5000, "assets/images/products/tangerine.webp")
-    this.addProduct("Helado de Vainilla", 5000, "assets/images/products/vanilla.webp")
+  constructor(private http: HttpClient, private _sanitizer: DomSanitizer) {
   }
 
-  getListProducts(): Product[] {
-    return this.listProducts
+  async getListProducts(): Promise<Product[]> {
+    var json: any = await this.http.get(`${environment.baseURL}/product/`).toPromise();
+    this.listProducts = [];
+    json.forEach((element: any) => {
+      var imagePath = this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, this._sanitizer.bypassSecurityTrustResourceUrl('data:image/jpg;base64,' + element.image));
+      //debugger;
+      var product: Product = new Product(element.id, element.name, + element.price, imagePath);
+      this.listProducts.push(product);
+    });
+    return this.listProducts;
   }
 
   addProduct(name: string, price: number, image: string) {
-    this.listProducts.push(new Product(this.lastId, name, price, image))
-    console.log(this.listProducts.length)
-    this.lastId++
+    this.http.post(`${environment.baseURL}/product/create`, {name: name, price: price, image: image});
   }
 
   modProduct(product: Product, name: string, price: number) {

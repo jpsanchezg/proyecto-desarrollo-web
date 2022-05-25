@@ -20,35 +20,38 @@ export class UserControllerService {
     {
       var responseBody = await this.http.post(`${environment.baseURL}/login`, {username: username, password: password}, {responseType: "text"}).toPromise();
       window.sessionStorage.setItem("jwt", responseBody);
-      var jsonCurrentUser = await this.http.get(`${environment.baseURL}/user/${username}`).toPromise();
-
-<<<<<<< HEAD
+      await this.getUserByUsername(username).then(value => {
+        this.currentUser = value;
+      })
+      return true;
     }
     catch(e)
     {
       console.error(e);
+      this.currentUser = null;
+      return false;
     }
-=======
-    id = this.addUser("Admin", "camilolalarga@gmail.com", "12345678")
-    this.findUserById(id).setIsAdmin(true)
-    id = this.addUser("juan pablo sanchez", "juanelgigante@gmail.com", "Loljuan23")
-    this.findUserById(id).setIsAdmin(false)
-    this.currentUser = this.findUserById(id)
-    id = this.addUser("juan Carlos", "juancarlos@gmail.com", "1234567")
-    this.findUserById(id).setIsAdmin(false)
->>>>>>> nuevos-cambios
   }
 
   addUser(name: string, username: string, password: string):boolean
   {
-
-    return false
+    try
+    {
+      this.http.post(`${environment.baseURL}/user/create`, {username: username, password: password, name: name}).toPromise();
+    }
+    catch(e)
+    {
+      console.error(e);
+      return false;
+    }
+    return true;
   }
 
-  modUser(name: string, username: string, password: string){
-    this.currentUser.setName(name)
-    this.currentUser.setUsername(username)
-    //TODO: enviar peticion de modificacion de usuario en backend
+  async modUser(name: string, username: string, password: string, shoppingCart: Purchase[])
+  {
+    var body = {username: username, name: name, password: password, shoppingCart: shoppingCart};
+    console.log(body);
+    await this.http.put(`${environment.baseURL}/user/update`, body).toPromise();
   }
 
   getCurrentUser(): User
@@ -58,11 +61,6 @@ export class UserControllerService {
 
   getAllUsers(): User[]{
     return this.listUsers
-  }
-
-  setCurrentUser(name: string)
-  {
-    //TODO: traer usuario de backend
   }
 
   async getUserByUsername(username: string)
@@ -76,26 +74,28 @@ export class UserControllerService {
       user.setIsAdmin(json.admin);
       var shoppingCart = json.shoppingCart;
       shoppingCart.forEach((element: any) => {
-        user.addPurchase(element.productId, element.quantity);
+        var purchase: Purchase = new Purchase(element.productId, element.quantity);
+        purchase.setId(element.id);
+        user.addPurchaseInstance(purchase);
       });
+      return user;
     }
     catch(e)
     {
       console.error(e);
     }
-    return user;
-    //TODO: solicitar usuario del backend
+    return null;
   }
 
-  removeUser(User: User)
+  removeUser(username: String)
   {
-    //TODO: enviar solicitud de eliminar en backend
+    this.http.delete(`${environment.baseURL}/user/delete/${username}`);
   }
 
   logOut()
   {
-    this.currentUser = null
-    //TODO: eliminar el jwt del storage
+    this.currentUser = null;
+    window.localStorage.removeItem("jwt");
   }
 }
 

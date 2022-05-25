@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: "kashmire.xyz:8081"
+  baseURL: "http://kashmire.xyz:8081"
 };
 
 /*

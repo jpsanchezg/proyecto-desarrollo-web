@@ -14,17 +14,17 @@ export class ModuserComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  modUser(name: string, email: string,newPassword: string, actualPassword: string){
-    if(this.userController.findUserById(this.userController.getCurrentUser().getId()) != null)
-    {
-      console.log("user found")
-      if(this.userController.getCurrentUser().getPassword() == actualPassword)
+
+  modUser(name: string, email: string, newPassword: string){
+    var user = this.userController.getUserByUsername(this.userController.getCurrentUser().getUsername()).then(value => {
+      if(value != null)
       {
-        this.userController.modUser(name, email, newPassword)
-        this.router.navigate(['/usuario']);
-        console.log("User modified")
+       console.log("user found")
+       this.userController.modUser(name, email, newPassword, [])
+       this.router.navigate(['/usuario']);
+       console.log("User modified")
       }
-    }
+    });
   }
 
 }

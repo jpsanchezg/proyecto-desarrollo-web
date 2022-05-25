@@ -59,6 +59,19 @@ export class User
         this.shoppingCart.push(new Purchase(productId, quantity))
     }
 
+    addPurchaseInstance(purchase: Purchase)
+    {
+        for(let purchase of this.shoppingCart)
+        {
+            if(purchase.getProductId() == purchase.getProductId())
+            {
+                purchase.setQuantity(purchase.getQuantity() + purchase.getQuantity())
+                return
+            }
+        }
+        this.shoppingCart.push(purchase)
+    }
+
     removePurchase(purchase: Purchase)
     {
         let index: number = this.shoppingCart.indexOf(purchase)
