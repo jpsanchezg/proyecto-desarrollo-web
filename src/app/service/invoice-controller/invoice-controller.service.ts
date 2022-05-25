@@ -43,7 +43,7 @@ export class InvoiceControllerService {
   }
 
   async findInvoicesByRangeDates(date1: Date, date2: Date) {
-    let params = `${environment.baseURL}/invoice/list/${date1.getDate()}-${date1.getMonth()}-${date1.getFullYear()}/${date2.getDate()}-${date2.getMonth()}-${date2.getFullYear()}`;
+    let params = `${environment.baseURL}/invoice/list/${date1.getDate()}-${date1.getMonth() + 1}-${date1.getFullYear()}/${date2.getDate()}-${date2.getMonth() + 1}-${date2.getFullYear()}`;
     let json: any = await this.http.get(params).toPromise();
     this.listInvoices = [];
     json.forEach((element: any) => {
@@ -76,7 +76,8 @@ export class InvoiceControllerService {
   }
 
   async findInvoicesByUserIdAndDateRange(username: string, date1: Date, date2: Date) {
-    let json: any = await this.http.get(`${environment.baseURL}/invoice/list/${date1.getDate()}-${date1.getMonth()}-${date1.getFullYear()}/${date2.getDate()}-${date2.getMonth()}-${date2.getFullYear()}/${username}`).toPromise();
+    let params = `${environment.baseURL}/invoice/list/${date1.getDate()}-${date1.getMonth() + 1}-${date1.getFullYear()}/${date2.getDate()}-${date2.getMonth() + 1}-${date2.getFullYear()}/${username}`;
+    let json: any = await this.http.get(params).toPromise();
     this.listInvoices = [];
     json.forEach((element: any) => {
       var listPurchases: Purchase[] = [];
