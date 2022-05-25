@@ -22,7 +22,8 @@ import { ModProductComponent } from './mod-product/mod-product.component';
 import { ModProductDetailComponent } from './mod-product-detail/mod-product-detail.component';
 import { DeleteProductDetailComponent } from './delete-product-detail/delete-product-detail.component';
 
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './utilities/utilities';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,10 +47,11 @@ import { DeleteProductDetailComponent } from './delete-product-detail/delete-pro
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [{ provide: APP_BASE_HREF, useValue: '/'}, { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

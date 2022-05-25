@@ -1,44 +1,44 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/model/user';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { Purchase } from 'src/app/model/purchase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserControllerService {
 
-  private lastId = 0
   private currentUser: User = null
   private listUsers: User[] = []
-  constructor() {
-    let id: number
-
-    id = this.addUser("Admin", "camilolalarga@gmail.com", "12345678")
-    this.findUserById(id).setIsAdmin(true)
-    id = this.addUser("juan pablo sanchez", "juanelgigante@gmail.com", "Loljuan23")
-    this.findUserById(id).setIsAdmin(false)
-    this.currentUser = this.findUserById(id)
-    id = this.addUser("juan Carlos", "juancarlos@gmail.com", "1234567")
-    this.findUserById(id).setIsAdmin(false)
+  constructor(private http: HttpClient) {
   }
 
-  addUser(name: string, email: string, password: string):number
+  async login(username: string, password: string)
   {
-    this.listUsers.push(new User(this.lastId, name, email, password))
-    this.lastId++
-    return this.lastId-1
+    try
+    {
+      var responseBody = await this.http.post(`${environment.baseURL}/login`, {username: username, password: password}, {responseType: "text"}).toPromise();
+      window.sessionStorage.setItem("jwt", responseBody);
+      var jsonCurrentUser = await this.http.get(`${environment.baseURL}/user/${username}`).toPromise();
+
+    }
+    catch(e)
+    {
+      console.error(e);
+    }
   }
-  modUser(name: string, email: string, password: string){
+
+  addUser(name: string, username: string, password: string):boolean
+  {
+
+    return false
+  }
+
+  modUser(name: string, username: string, password: string){
     this.currentUser.setName(name)
-    this.currentUser.setEmail(email)
-    this.currentUser.setPassword(password)
-    this.listUsers.forEach(element => {
-      if(element.getId() == this.currentUser.getId())
-      {
-        element.setName(name)
-        element.setEmail(email)
-        element.setPassword(password)
-      }
-    });
+    this.currentUser.setUsername(username)
+    //TODO: enviar peticion de modificacion de usuario en backend
   }
 
   getCurrentUser(): User
@@ -46,65 +46,46 @@ export class UserControllerService {
     return this.currentUser
   }
 
-  getallUsers(): User[]{
+  getAllUsers(): User[]{
     return this.listUsers
   }
+
   setCurrentUser(name: string)
   {
-    this.currentUser = this.findUserByName(name)
+    //TODO: traer usuario de backend
   }
 
-  findUserById(id: number): User
+  async getUserByUsername(username: string)
   {
-    for (let User of this.listUsers)
+    var user: User = new User();
+    try
     {
-      if(User.getId() == id)
-      {
-        return User
-      }
+      var json: any = await this.http.get(`${environment.baseURL}/user/${username}`).toPromise();
+      user.setUsername(json.username);
+      user.setName(json.name);
+      user.setIsAdmin(json.admin);
+      var shoppingCart = json.shoppingCart;
+      shoppingCart.forEach((element: any) => {
+        user.addPurchase(element.productId, element.quantity);
+      });
     }
-    return null
-  }
-
-  findUserByName(name: string): User
-  {
-    for(let User of this.listUsers)
+    catch(e)
     {
-      if(User.getName() == name)
-      {
-        return User
-      }
+      console.error(e);
     }
-    return null
-  }
-
-  removeUserByName(name: string)
-  {
-    let User: User
-    User = this.findUserByName(name)
-    if(User != null)
-    this.removeUser(User)
-  }
-
-  removeUserById(id: number)
-  {
-    let User: User
-    User = this.findUserById(id)
-    this.removeUser(User)
+    return user;
+    //TODO: solicitar usuario del backend
   }
 
   removeUser(User: User)
   {
-    if(User != null)
-    {
-      let index: number = this.listUsers.indexOf(User)
-      this.listUsers.splice(index, 1)
-    }
+    //TODO: enviar solicitud de eliminar en backend
   }
 
   logOut()
   {
     this.currentUser = null
+    //TODO: eliminar el jwt del storage
   }
 }
 

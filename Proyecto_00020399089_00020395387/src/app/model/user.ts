@@ -3,40 +3,23 @@ import { Purchase } from "./purchase"
 
 export class User
 {
-    private id: number
-    private email: string
+    private username: string
     private name: string
-    private password: string
     private isAdmin: boolean
     private shoppingCart: Purchase[] = []
 
-    constructor(id: number, name: string, email: string, password: string)
+    constructor()
     {
-        this.id = id
-        this.name = name
-        this.email = email
-        this.password = password
-        this.isAdmin = false
     }
 
-    getId(): number
+    getUsername(): string
     {
-        return this.id
-    }
-
-    getEmail(): string
-    {
-        return this.email
+        return this.username
     }
 
     getName(): string
     {
         return this.name
-    }
-
-    getPassword(): string
-    {
-        return this.password
     }
 
     getShoppingCart(): Purchase[]
@@ -53,19 +36,14 @@ export class User
         this.isAdmin = isAdmin
     }
 
-    setEmail(email: string)
+    setUsername(username: string)
     {
-        this.email = email
+        this.username = username
     }
 
     setName(name: string)
     {
         this.name = name
-    }
-
-    setPassword(password: string)
-    {
-        this.password = password
     }
 
     addPurchase(productId: number, quantity: number)
