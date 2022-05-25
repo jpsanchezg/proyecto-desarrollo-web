@@ -39,7 +39,7 @@ export class InvoiceControllerService {
     for (let purchase of listPurchases) {
       purchaseTotal += this.productControllerService.findProductById(purchase.getProductId()).getPrice() * purchase.getQuantity()
     }
-    this.http.post(`${environment.baseURL}/invoice/create/${username}`, {purchaseTotal: purchaseTotal, listPurchases: listPurchases }).toPromise();
+    this.http.post(`${environment.baseURL}/invoice/create/${username}`, {priceTotal: purchaseTotal, listPurchases: listPurchases }).toPromise();
   }
 
   async findInvoicesByRangeDates(date1: Date, date2: Date) {
